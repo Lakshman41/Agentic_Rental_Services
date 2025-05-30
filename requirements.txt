@@ -1,0 +1,34 @@
+# Core Web Framework
+fastapi
+uvicorn[standard] # ASGI server for FastAPI, [standard] includes websockets and http-tools
+
+# Database - PostgreSQL
+# Choose one of the following drivers. asyncpg is generally preferred for FastAPI's async capabilities.
+# psycopg2-binary # For synchronous operations or if preferred
+asyncpg # For asynchronous operations with SQLAlchemy
+
+# ORM
+sqlalchemy[asyncio] # For async support with SQLAlchemy 2.0+
+alembic # For database migrations
+
+# Caching - Redis
+redis
+
+# Task Queue - Celery
+celery
+# You'll need a message broker for Celery, Redis is a common choice:
+# (redis is already listed above, Celery can use the same Redis instance)
+# flower # Optional: for monitoring Celery tasks
+
+# AI & LangChain (we'll specify versions later if needed, or as LangChain evolves)
+langchain
+# We'll add specific LangChain integrations like langchain-openai, langchain-deepseek as needed
+
+# Environment Variable Management
+python-dotenv
+
+# Utility for Pydantic settings with FastAPI
+pydantic-settings
+
+# For richer CLI output during development (optional but nice)
+# rich
