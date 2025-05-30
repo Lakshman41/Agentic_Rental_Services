@@ -115,7 +115,8 @@ The project follows a modular structure:
 *(Instructions for running tests will be added here once the test suite is set up)*
 ```bash
 # pytest (Placeholder for now)
-Contributing
+```
+## Contributing
 Please read CONTRIBUTING.md (to be created) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## License
