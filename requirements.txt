@@ -3,8 +3,6 @@ fastapi
 uvicorn[standard] # ASGI server for FastAPI, [standard] includes websockets and http-tools
 
 # Database - PostgreSQL
-# Choose one of the following drivers. asyncpg is generally preferred for FastAPI's async capabilities.
-# psycopg2-binary # For synchronous operations or if preferred
 asyncpg # For asynchronous operations with SQLAlchemy
 
 # ORM
@@ -16,19 +14,26 @@ redis
 
 # Task Queue - Celery
 celery
-# You'll need a message broker for Celery, Redis is a common choice:
-# (redis is already listed above, Celery can use the same Redis instance)
 # flower # Optional: for monitoring Celery tasks
 
-# AI & LangChain (we'll specify versions later if needed, or as LangChain evolves)
+# AI & LangChain
 langchain
 # We'll add specific LangChain integrations like langchain-openai, langchain-deepseek as needed
+
+# Pydantic & Settings
+pydantic[email] # Includes pydantic itself and email validation extras
+pydantic-settings # Utility for Pydantic settings with FastAPI
+
+# Authentication & Security
+passlib[bcrypt]  # For password hashing
+python-jose[cryptography] # For JWT handling
 
 # Environment Variable Management
 python-dotenv
 
-# Utility for Pydantic settings with FastAPI
-pydantic-settings
-
 # For richer CLI output during development (optional but nice)
 # rich
+
+# For pgvector (if you install the python client for it, though not strictly needed for just using the extension via raw SQL/SQLAlchemy)
+# psycopg2-binary # Sometimes needed by pgvector client libraries, or if you have sync parts. asyncpg is our main driver.
+# pgvector # The Python client library for pgvector (optional, if you use its specific client features)
