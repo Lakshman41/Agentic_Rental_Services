@@ -30,6 +30,7 @@ from app.models.user import User # noqa
 from app.models.property import Property # noqa
 from app.models.property_image import PropertyImage # noqa
 from app.models.property_embedding import PropertyEmbedding # noqa
+from app.models.saved_search import SavedSearch
 # ... import other models ...
 # --- End App Imports ---
 
