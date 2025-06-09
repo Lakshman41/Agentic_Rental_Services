@@ -1,10 +1,8 @@
-#project idx file
-.idx
-
-# Python
+# --- Python ---
 __pycache__/
 *.py[cod]
 *$py.class
+*.so
 *.egg-info/
 .Python
 build/
@@ -13,8 +11,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
-lib64/
 parts/
 sdist/
 var/
@@ -23,44 +19,135 @@ pip-wheel-metadata/
 share/python-wheels/
 *.manifest
 *.spec
+celerybeat-schedule
+*.pid
+instance/
 
-# Virtual Environment
+# --- Virtual Environment ---
 venv/
 .venv/
 env/
-.env/
+.env/ # For local environment instances
 ENV/
-# Note: if you named your venv something else, add it here
 
-# IDE / Editor specific
-.vscode/
-.idea/
-*.project
-*.pydevproject
-.DS_Store
-*.swp
-*.swo
-
-# Secrets & Environment variables
-.env # IMPORTANT: Never commit your actual .env file
+# --- Secrets & Environment Variables ---
+# IMPORTANT: Ensure .env (actual secrets) is listed and NEVER committed.
+.env
 *.env.*.local
 *.env.local
+# !.env.example # Example file IS committed
+# !.env.ci      # Example CI environment file IS committed if safe
 
-# Logs
+# Cloud provider credentials & config files (examples, add specific ones you use)
+# .aws/
+# .boto
+# .gcloud/
+# Add other cloud CLI configurations
+
+# General private keys (ca.pem is handled separately based on policy)
+# *.pem # If you have other private .pem files
+*.key 
+ca.pem
+credentials.json # Common name for service account keys
+secrets.json     # Another common name
+# Specific sensitive files
+client_secret*.json # Common for OAuth client secrets
+oauth_secrets.json
+
+# Local database files (if not using Dockerized DB for dev exclusively)
+*.sqlite3
+*.db
+
+# --- IDE / Editor Specific ---
+.vscode/
+!.vscode/settings.json # Optional: commit workspace settings if desired by team
+!.vscode/launch.json   # Optional: commit launch configurations if desired
+!.vscode/extensions.json # Optional: commit recommended extensions if desired
+
+.idea/
+# .idea/workspace.xml # Generally ignored, contains local user history
+# .idea/shelf/        # IntelliJ shelf changes
+
+*.project
+*.pydevproject
+*.sublime-workspace
+*.sublime-project
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Vim / Emacs
+*~
+*.swp
+*.swo
+.#*
+
+# --- Logs ---
 logs/
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# Add any other specific log file patterns
 
-# Coverage
+# --- Test & Coverage ---
+.pytest_cache/
 .coverage
 .coverage.*
-htmlcov/
+nosetests.xml
 coverage.xml
+htmlcov/
+junit/
+report/
+pytestdebug.log
+.tox/
 
-# Docker
+# --- Build & Packaging ---
+*.tar.gz
+*.tgz
+*.zip
+*.egg
+*.whl
+MANIFEST
+
+# --- Docker ---
 docker-compose.override.yml
+# Note: .dockerignore is a separate file for Docker build context
 
-# Temporary files
+# --- Temporary Files ---
 tmp/
+temp/
 *.tmp
 *.bak
 *.orig
+*.patch
+*.diff
+
+# --- Project IDX (if used) ---
+.idx/
+
+# --- Jupyter Notebook ---
+.ipynb_checkpoints
+
+# --- Terraform (if used) ---
+# .terraform/
+# .terraform.lock.hcl
+# *.tfstate
+# *.tfstate.*
+# crash.log
+# override.tf
+# override.tf.json
+# *_override.tf
+# *_override.tf.json
+# .terraformrc
+# terraform.rc
