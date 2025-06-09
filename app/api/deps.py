@@ -15,6 +15,7 @@ from app.schemas.user import User as UserSchema # Pydantic model for user respon
 from app.core.database import get_db_session # DB session dependency
 from app.services.user_service import UserService
 from app.services.saved_search_service import SavedSearchService
+from app.services.property_service import PropertyService
 # from app.models.user import User as UserModel # UserModel is an internal detail of UserService
 
 # OAuth2PasswordBearer tells FastAPI where to look for the token (Authorization: Bearer <token>)
@@ -158,6 +159,12 @@ def require_roles(required_roles: List[str]): # Ensure List is imported from typ
         logger.info(f"User {current_user.email} has one of the required roles. Role: {current_user.role}")
         return current_user
     return roles_checker
+
+def get_property_service( # <--- ADD THIS FUNCTION
+    db_session: AsyncSession = Depends(get_db_session)
+) -> PropertyService:
+    """Dependency to get an instance of PropertyService."""
+    return PropertyService(db_session=db_session)
 
 # Specific role dependencies (examples)
 get_current_admin_user = require_role("admin")
